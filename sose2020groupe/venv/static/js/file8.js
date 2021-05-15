@@ -41,6 +41,7 @@ async function startMonitoring () {
  */
 function stopMonitoring () {
   monitoring = false
+  updateStatus('Monitoring Stopped')
 }
 
 // Function to stop motor
@@ -48,6 +49,7 @@ function stopMonitoring () {
 function stopMotor () {
     //This function will stop Motor Working and monitoring distance and inZone info
     wrkg = false
+    updateStatus('Motor Stopped')
 }
 
 
