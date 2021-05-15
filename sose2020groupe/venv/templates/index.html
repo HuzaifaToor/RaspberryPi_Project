@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Rod tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='vendor/axios/axios.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/file8.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <section id="streaming_viewer">
+      <h1 align="center">Rod tracker</h1>
+      <img id="background" class="center" src="{{ url_for('video_feed') }}">
+    </section>
+
+    <section id="actions">
+      <h2>Actions</h2>
+        <div>
+          <!-- 'Stop in zone' checkbox with corresponding request changing value clicking -->
+          <input id="stop_in_zone_cb" onchange="requestStopInZone(this)" name="stop_in_zone" type="checkbox"/>
+          <label for="stop_in_zone_cb">Stop in zone</label>
+
+          <!--a href="/start_motor"><input type="button" value="Start Motor"></a-->
+          <button onclick="requestStartMotor ()">Start Motor</button>
+          
+          <!-- ... -->
+          <button onclick="stopMotor ()">Stop Motor</button>
+          
+          
+          <!--a href="/stop_in_zone"><input type="button" value="Stop Motor"></a-->
+          <!-- ... -->
+        </div>
+ 
+  </section>
+
+  <section id="monitoring_info">
+    <h2>Monitoring information</h2>
+    <!-- HTML elements for 'Motor status' information -->
+    <!--label id="monitor_value1">In zone</label-->
+    <!--label id="monitor_value2">Sensor distance</label-->
+    <p><b>In zone and Distance info: </b> <span id="monitor_text"></span></p>
+    <!--p><b>Status:</b> <span id="status_text"></span></p-->
+    <!-- ... -->
+    <p><b>Status:</b> <span id="status_text"></span></p>
+
+    <!-- HTML elements for 'Distance' information -->
+    <!-- ... -->
+
+    <!-- HTML elements for 'Is in zone?' information -->
+    
+    <button onclick="stopMonitoring ()">Stop Data Monitoring</button>
+    <!-- ... -->
+  </section>
+ 
+  </body>
+</html>
