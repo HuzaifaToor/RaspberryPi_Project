@@ -1,15 +1,22 @@
 let monitoring
+let wrkg
 
 /**
  * Function to request the server to start the motor
  */
 async function requestStartMotor () {
   try {
-    // Make request to server
-    await axios.post('/start_motor')
-    // Update status
-    updateStatus('Motor has Moved for given steps... ')
-    startMonitoring()
+    // This Automatically start Motor and monitoring
+    wrkg = true
+    monitoring = true
+    do{
+        await axios.post('/start_motor')
+        updateStatus('Motor is working untill you press stop Motor button ')
+        if (monitoring){
+            startMonitoring()
+        } 
+    }
+    while(wrkg)
   } catch (e) {
     console.log('Error starting the motor', e)
     updateStatus('Error starting')
@@ -34,7 +41,19 @@ async function startMonitoring () {
  */
 function stopMonitoring () {
   monitoring = false
+  updateStatus('Monitoring Stopped')
 }
+
+// Function to stop motor
+
+function stopMotor () {
+    //This function will stop Motor Working and monitoring distance and inZone info
+    wrkg = false
+    updateStatus('Motor Stopped')
+}
+
+
+
 
 /**
  * Function to request monitoring data to the server and display it in the main page
@@ -46,33 +65,45 @@ function updateMonitoringData (Monitor_result) {
    Monitoring_Data.innerText = JSON.stringify(Monitor_result)
 }
 
+
+
 /**
  * Function to request the server to stop the motor
- */
+ 
 async function stopSystem () {
   //...
   try {
+  wrkg = false
+  //updateStatus('Stopping System')
+  await axios.post('/stop_motor')
   updateStatus('Stopping System')
-  await axios.post('/stop_System')
+  wrkg = false
+  
   //let result1 = await axios.get('/stop_in_zone')
-  updateStatus('Motor stopped')
+  updateStatus('System Stopped')
 } catch (e) {
     console.log('Error stoping', e)
-    updateStatus('Can not stop system')
+    updateStatus('Can not stop system....')
 }
 }
+*/
 /**
  * Request the server to (not) stop the rod , if it is in the target zone
  */
 async function requestStopInZone (cb) {
   try {
     // Update status text
-    updateStatus(cb.checked  ? 'Will stop in zone' : 'Will not stop in zone')
+    if (cb){
+        updateStatus('Will Stop in Zone')
+        await axios.post('/stop_in_zone')        
+    }
+    
+    //updateStatus(cb.checked  ? 'Will stop in zone' : 'Will not stop in zone')
     // Request the server to stop the motor in zone
-    await axios.post('/stop_in_zone', { stop: cb.checked })
+    //await axios.post('/stop_in_zone', { stop: cb.checked })
   } catch (e) {
-    console.log('Error moving to zone', e)
-    updateStatus('Error moving to zone')
+        console.log('Error moving to zone', e)
+        updateStatus('Error moving to zone')
   }
 }
 
