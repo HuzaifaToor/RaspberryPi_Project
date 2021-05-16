@@ -10,8 +10,9 @@ async function requestStartMotor () {
     wrkg = true
     monitoring = true
     do{
+        updateStatus('Motor started working, Press Stop Motor button to stop')
         await axios.post('/start_motor')
-        updateStatus('Motor is working untill you press stop Motor button ')
+        
         if (monitoring){
             startMonitoring()
         } 
@@ -49,7 +50,7 @@ function stopMonitoring () {
 function stopMotor () {
     //This function will stop Motor Working and monitoring distance and inZone info
     wrkg = false
-    updateStatus('Motor Stopped')
+    updateStatus('Motor will Stop soon')
 }
 
 
@@ -61,8 +62,13 @@ function stopMotor () {
 function updateMonitoringData (Monitor_result) {
 
   // Get the HTML element where the status is displayed
-  let Monitoring_Data = document.getElementById('monitor_text')
-   Monitoring_Data.innerText = JSON.stringify(Monitor_result)
+  const results = JSON.stringify(Monitor_result)
+  const results1 = JSON.parse(results)
+  let Monitoring_Data1 = document.getElementById('distance_text')
+  Monitoring_Data1.innerText = results1.distance
+  let Monitoring_Data2 = document.getElementById('Inzone_text')
+  Monitoring_Data2.innerText = results1.inZone
+  
 }
 
 

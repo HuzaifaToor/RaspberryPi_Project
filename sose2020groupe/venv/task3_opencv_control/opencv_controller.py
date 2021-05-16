@@ -83,12 +83,16 @@ class OpenCVController(object):
             print("No Overlapping\n")
         #############################
         # ...
-        print('Monitoring')
+        print('Monitoring\n')
+        #print("Type before openCV ", type(frame))
+        #print("dtype before opneCV ", frame.dtype)
+        
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
         #yield (b'--frame\r\n'
                 #b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
-
+        #print("Type after openCV ", type(frame))
+        #print("dtype after opneCV ", frame.dtype)
         return frame
 
     def is_in_zone(self):

@@ -25,7 +25,9 @@ class Camera(object):
         #return self.frames[random_index]
         _, self.frames = webcam.read()
         #ret, buffer = cv2.imencode('.jpg', self.frames)
-        #self.frames = buffer.tobytes()        
+        #self.frames = buffer.tobytes()
+        #print("Camera self.frames variable type : ", type(self.frames))
+        #print("Camera self.frames variable dtype : ", (self.frames).dtype)
         return self.frames
 
 '''from time import time
