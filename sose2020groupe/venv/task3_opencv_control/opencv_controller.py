@@ -18,14 +18,17 @@ class OpenCVController(object):
         #############################
         #Red Lower range
         hsvFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        lower_red = np.array([0,120,70])
+        '''lower_red = np.array([0,120,70])
         upper_red = np.array([10,255,255])
         mask1 = cv2.inRange(hsvFrame, lower_red, upper_red)
         #Red upper range
         lower_red = np.array([170,120,70])
         upper_red = np.array([180,255,255])
         mask2 = cv2.inRange(hsvFrame,lower_red,upper_red)
-        red_mask = mask1 + mask2
+        red_mask = mask1 + mask2'''
+        lower_red = np.array([161, 155, 84],np.uint8)
+        upper_red = np.array([179, 255, 255],np.uint8)
+        red_mask = cv2.inRange(hsvFrame, lower_red, upper_red)
         #Blue color Range
         blue_lower=np.array([100,150,0],np.uint8)
         blue_upper=np.array([140,255,255],np.uint8)
@@ -44,7 +47,7 @@ class OpenCVController(object):
         contours, hierarchy = cv2.findContours(red_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         for pic, contour in enumerate(contours):
             area = cv2.contourArea(contour)
-            if(area > 300):
+            if(area > 3000):
                 x, y, w, h = cv2.boundingRect(contour)
                 imageFrame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
                 cv2.putText(imageFrame, "Red Colour", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255))
@@ -61,7 +64,7 @@ class OpenCVController(object):
         contours, hierarchy = cv2.findContours(blue_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         for pic, contour in enumerate(contours):
             area = cv2.contourArea(contour)
-            if(area > 2000):
+            if(area > 5000):
                 x1, y1, w1, h1 = cv2.boundingRect(contour)
 
                 imageFrame = cv2.rectangle(frame, (x1, y1), (x1 + w1, y1 + h1), (255, 0, 0), 2)
