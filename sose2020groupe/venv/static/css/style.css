@@ -1,3 +1,28 @@
+body{
+    background-color: lightblue;
+    background-image: url("../img/img3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1{
+    color:green;
+    margin-right:10%;
+    font-size:50px;
+    text-align: center;
+}
+
+
+h2{
+color:black;
+font-size:30px;
+}
+
+img {
+  border-radius: 10%;
+}
+
 section {
   display: block;
   margin-left: auto;
@@ -10,4 +35,17 @@ section {
   margin-left: auto;
   margin-right: auto;
   height: 60%;
+}
+
+button{
+  /*background-color: #006400*/;
+  border: 2px soloid #006400;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10%;
 }

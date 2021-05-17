@@ -2,12 +2,17 @@ import cv2
 import numpy as np
 import sys
 #x1, y1, w1, h1 = 0
+x1, y1, w1, h1 = [0, 0, 0, 0]
+x, y, w, h = [0, 0, 0, 0]
 
 class OpenCVController(object):
 
     def __init__(self):
         self.in_zone = False
         print('OpenCV controller initiated')
+        x1, y1, w1, h1 = [0, 0, 0, 0]
+        x, y, w, h = [0, 0, 0, 0]
+
 
     def get_frame(self, camera):
         self.in_zone = False
@@ -70,16 +75,13 @@ class OpenCVController(object):
                 imageFrame = cv2.rectangle(frame, (x1, y1), (x1 + w1, y1 + h1), (255, 0, 0), 2)
                 cv2.putText(imageFrame, "Blue Colour", (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
                 
-        #if (x < (y1+w1) and (x+w) > x1) or (x < (y1+w1) and (x+w) > x1):
-
-        if 'x' and 'x1' and 'w' and 'w1' in globals():
+        
+        try:
             if (x < (x1+w1) and (x+w) > x1):
                 self.in_zone = True
                 print("Overlapping ")
-            else:
-                self.in_zone = False
-            
-        else:
+        except:
+            self.in_zone = False
             print("No Overlapping\n")
         #############################
         # ...
