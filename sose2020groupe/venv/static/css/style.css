@@ -1,22 +1,24 @@
 body{
-    background-color: lightblue;
-    background-image: url("../img/img3.jpg");
+    /*background-color: lightblue;*/
+    background-image: url("../img/dark2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
 h1{
-    color:green;
+    color:#b48608;
     margin-right:10%;
     font-size:50px;
     text-align: center;
+	font-family: "Great Vibes";
 }
 
 
 h2{
-color:black;
-font-size:30px;
+  color:#b48608;
+  font-size:30px;
+  font-family: "Serifs";
 }
 
 img {
@@ -39,13 +41,27 @@ section {
 
 button{
   /*background-color: #006400*/;
-  border: 2px soloid #006400;
-  color: black;
-  padding: 10px;
+  border: 8px soloid #d54d7b;
+  color: blue;
+  padding: 5px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 10%;
+  border-radius: 20%;
+}
+
+label{
+	
+  color: #d54d7b;
+  padding: 18px;
+  font-family: "Droid serif";
+}
+
+p{
+  color: #d54d7b;
+  padding: 18px;
+  font-family: "Droid serif";
+	
 }

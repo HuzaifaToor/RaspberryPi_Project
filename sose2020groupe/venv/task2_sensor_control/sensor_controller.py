@@ -20,7 +20,7 @@ class SensorController:
 
   def track_rod(self):
     sleep(2)
-    self.distance = randint(100, 500)
+    self.distance = randint(10, 30)
     #print("Distance is :", self.distance)
 
   def get_distance(self):
