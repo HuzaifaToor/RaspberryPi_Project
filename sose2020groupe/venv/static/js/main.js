@@ -80,7 +80,7 @@ function updateMonitoringData (Monitor_result) {
 async function requestStopInZone (cb) {
   try {
     // Update status text
-    if (cb){
+    if (cb.checked){
         updateStatus('Will Stop in Zone')
         wrkg = false
         await axios.post('/stop_in_zone')        
@@ -95,6 +95,20 @@ async function requestStopInZone (cb) {
         updateStatus('Error moving to zone')
   }
 }
+
+
+/**async function requestStopInZone (cb) {
+  try {
+    // Update status text
+    updateStatus(cb.checked  ? 'Will stop in zone' : 'Will not stop in zone')
+    // Request the server to stop the motor in zone
+    await axios.post('/stop_in_zone', { stop: cb.checked })
+  } catch (e) {
+    console.log('Error moving to zone', e)
+    updateStatus('Error moving to zone')
+  }
+}}*/
+
 
 
 function updateStatus(statusText) {
