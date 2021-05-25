@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, Response, request, jsonify
 
 from task1_motor_control.motor_controller import MotorController
@@ -39,18 +38,6 @@ def start_motor():
     return { 'success': True }
 
 
-'''@app.route('/stop_system', methods=['POST'])
-def stop_system():
-    # ...
-    #if motor_controller.is_working():
-    motor_controller.stop_motor()
-    sensor_controller.stopSensor()
-    opencv_controller.stopCamera()
-    #sys.exit()
-
-    return { 'success': True }
-    #return {sys.exit()}
-'''
 
 
 @app.route('/monitor', methods=['GET'])
