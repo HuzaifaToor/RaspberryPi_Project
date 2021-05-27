@@ -26,7 +26,7 @@ class MotorController(object):
 
     #GPIO.setwarnings(False)
     delay = 1/400
-    counter = 50
+    counter = 30
     print('Motor started')
     self.working = True  
     for x in range(counter): 

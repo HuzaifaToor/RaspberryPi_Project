@@ -19,7 +19,7 @@ class SensorController:
     #GPIO.setwarnings(False)
 
   def track_rod(self):
-    sleep(2)
+    sleep(1)
     self.distance = randint(10, 30)
     #print("Distance is :", self.distance)
 
@@ -27,4 +27,4 @@ class SensorController:
     return self.distance
 
   def stopSensor(self):
-    quit()
+    sys.exit()

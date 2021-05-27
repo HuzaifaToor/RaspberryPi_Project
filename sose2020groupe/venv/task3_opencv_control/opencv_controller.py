@@ -15,7 +15,7 @@ class OpenCVController(object):
 
 
     def get_frame(self, camera):
-        self.in_zone = False
+        #self.in_zone = False
         frame = camera.get_frame()
 
         #cv2.imshow('Camera Output', frame)
@@ -102,4 +102,4 @@ class OpenCVController(object):
 
 
     def stopCamera(self):
-        quit()
+        sys.exit()

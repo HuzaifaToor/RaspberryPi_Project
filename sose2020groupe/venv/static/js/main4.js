@@ -29,14 +29,10 @@ async function requestStartMotor () {
  */
 async function startMonitoring () {
 
-/////remove while loop and monitoring variable
+  let result = await axios.get('/monitor')
+   //updateMonitoringData(result.data)
+  updateMonitoringData(result.data)
 
-  monitoring = true
-  while (monitoring) {
-    let result = await axios.get('/monitor')
-    //updateMonitoringData(result.data)
-    updateMonitoringData(result.data)
-  }
 }
 
 /** 
@@ -84,7 +80,6 @@ async function requestStopInZone (cb) {
     // Update status text
     if (cb.checked){
         updateStatus('Will Stop in Zone')
-        //wrkg = false
         await axios.post('/stop_in_zone')        
     } else {
         updateStatus('Will not Stop in Zone')

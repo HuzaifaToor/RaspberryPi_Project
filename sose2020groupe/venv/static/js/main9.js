@@ -1,5 +1,6 @@
 let monitoring
 let wrkg
+let results1
 
 /**
  * Function to request the server to start the motor
@@ -29,12 +30,10 @@ async function requestStartMotor () {
  */
 async function startMonitoring () {
 
-  monitoring = true
-  while (monitoring) {
-    let result = await axios.get('/monitor')
-    //updateMonitoringData(result.data)
-    updateMonitoringData(result.data)
-  }
+  let result = await axios.get('/monitor')
+   //updateMonitoringData(result.data)
+  updateMonitoringData(result.data)
+
 }
 
 /** 
@@ -63,7 +62,7 @@ function updateMonitoringData (Monitor_result) {
 
   // Get the HTML element where the status is displayed
   const results = JSON.stringify(Monitor_result)
-  const results1 = JSON.parse(results)
+  results1 = JSON.parse(results)
   let Monitoring_Data1 = document.getElementById('distance_text')
   Monitoring_Data1.innerText = results1.distance
   let Monitoring_Data2 = document.getElementById('Inzone_text')
@@ -82,8 +81,9 @@ async function requestStopInZone (cb) {
     // Update status text
     if (cb.checked){
         updateStatus('Will Stop in Zone')
-        //wrkg = false
-        await axios.post('/stop_in_zone')        
+        //await axios.post('/stop_in_zone')
+        results1.inZone == "true" ? wrkg=false : wrkg=true
+
     } else {
         updateStatus('Will not Stop in Zone')
         wrkg = true

@@ -60,9 +60,9 @@ def monitor():
 @app.route('/stop_in_zone', methods=['POST'])
 def stop_in_zone():
     # ...
-    if opencv_controller.is_in_zone() == True:
-        if motor_controller.is_working():
-            motor_controller.stop_motor()
+    if (opencv_controller.is_in_zone()):
+#if motor_controller.is_working():
+        motor_controller.stop_motor()
     return { 'success': True }
 
 if __name__ == '__main__':
